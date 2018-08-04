@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // mongoose.connect("mongodb://localhost/proveedores");
-// mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds113522.mlab.com:13522/proveedores');
-// mongodb://<dbuser>:<dbpassword>@ds263791.mlab.com:63791/prov_crud
+mongoose.connect('mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
+{ useMongoClient : true
+});
 
 var proveedor_schema = new Schema({
     nombre : String,
