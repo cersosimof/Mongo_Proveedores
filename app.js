@@ -8,6 +8,9 @@ var cors = require('cors');
 var app = express();
 const mongoose = require('mongoose');
 
+mongoose.connect('mongodb://<cersosimof>:<espora1436>@ds113522.mlab.com:13522/proveedores',
+{ useMongoClient : true
+});
 
 //RUTAS
 var indexRouter = require('./routes/index');
