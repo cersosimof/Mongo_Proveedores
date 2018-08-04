@@ -11,13 +11,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
  
-app.use(express.session({
-  secret: 'keyboard cat',
-  saveUninitialized: false, // don't create session until something stored
-  resave: false, //don't save session if unmodified
+app.use(session({
   store: new MongoStore({
-      url: 'mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
-      touchAfter: 24 * 3600 // time period in seconds
+    url: 'mongodb://localhost/test-app',
+    ttl: 14 * 24 * 60 * 60 // = 14 days. Default
   })
 }));
 
