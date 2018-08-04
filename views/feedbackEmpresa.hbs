@@ -1,0 +1,18 @@
+{{#if feedbackSi}}
+
+{{feedbackSi}}
+
+{{else}}
+
+<h2>EMPRESAS PARTICIPANTES</h2>
+<h4>Tilde las empresas que cotizaron y luego presiones aceptar.</h4>
+
+ <form action="/feedback/{{nroExp}}" method="POST">
+{{#each expedientes}}
+ <input type="checkbox" name="contesto" value="{{nombre}}">{{nombre}}<br>
+{{/each}}
+<input type="hidden" value="{{nroExp}}" name="nroExp">
+<input type="submit">
+ </form>
+
+ {{/if}}

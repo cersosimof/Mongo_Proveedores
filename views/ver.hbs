@@ -1,0 +1,45 @@
+{{!-- BUSCADOR DE EMPRESAS POR RAMO --}}
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Ingrese el rubro de empresas que desea buscar: </a>
+  <form class="form-inline ui-widget">
+    <input class="form-control mr-sm-2" type="search" aria-label="Search" id="tags">
+
+  </form>
+</nav>
+
+
+
+{{!-- PRESENTACION DE LOS PROVEEDORES EN PANTALLA --}}
+{{#if mensaje}}
+<br><div class="alert alert-danger" role="alert">
+  <strong>Cuidado!,</strong> No hay proveedores en este rubro.
+</div>
+{{/if}}
+
+{{#if productos}}
+<div class="contenedor">
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Empresa</th>
+      <th scope="col">Correo</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">% Part.</th>
+    </tr>
+  </thead>
+  {{#each productos }}
+  <tbody>
+    <tr>
+      <th>{{nombre}}</th>
+      <td>{{correo}}</td>
+      <td>{{telefono}}</td>
+      <td>{{contacto}}</td>
+      <td>{{prom}}% - ({{invitado}})</td> 
+    </tr>
+  </tbody>
+
+{{/each}}
+</table>
+</div>
+{{/if}}
