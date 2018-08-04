@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo')(session);
  
 app.use(session({
   store: new MongoStore({
-    url: 'mongodb://localhost/test-app',
+    url: 'mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
     ttl: 14 * 24 * 60 * 60 // = 14 days. Default
   })
 }));
