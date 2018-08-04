@@ -19,7 +19,7 @@ mongoose.connect('mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/prov
 app.use(session({
   secret: 'poronga',
   store: new MongoStore({
-    url: 'mongodb://localhost/proveedores',
+    url: 'mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
     ttl: 14 * 24 * 60 * 60 // = 14 days. Default
   })
 }));
