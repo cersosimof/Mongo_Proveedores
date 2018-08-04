@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 // mongoose.connect("mongodb://localhost/proveedores");
 mongoose.connect('mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
-{ useMongoClient : true
+{ useNewUrlParser : true
 });
 
 var exp_schema = new Schema({
