@@ -3,11 +3,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session');
+// var session = require('express-session');
 var cors = require('cors');
 var app = express();
 const mongoose = require('mongoose');
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(express.session({
+  secret: 'keyboard cat',
+  saveUninitialized: false, // don't create session until something stored
+  resave: false, //don't save session if unmodified
+  store: new MongoStore({
+      url: 'mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
+      touchAfter: 24 * 3600 // time period in seconds
+  })
+}));
 
 
 //RUTAS
@@ -38,7 +50,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
+// app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
 
 //RUTAS
 app.use('/', indexRouter);
