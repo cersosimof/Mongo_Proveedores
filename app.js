@@ -12,14 +12,15 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 // mongoose.connect("mongodb://localhost/proveedores");
-mongoose.connect('mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
+mongoose.connect('mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
 { useNewUrlParser : true
 });
 
 app.use(session({
   secret: 'poronga',
   store: new MongoStore({
-    url: 'mongodb://<cherso88>:<espora1436>@ds113522.mlab.com:13522/proveedores',
+    // url: 'mongodb://localhost/proveedores',   
+    url: 'mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
     ttl: 14 * 24 * 60 * 60 // = 14 days. Default
   })
 }));
