@@ -7,18 +7,18 @@
 $( function() {
   $( document ).ready(function() {
     var ramosEmpresas = [];
-//     var nombresEmpresas = [];
+    var nombresEmpresas = [];
 
-  // $.ajax({
-  //   method: "POST",
-  //   url: "/buscarRamo",  
-  //   success: function(data) {
-  //   var ramos = JSON.parse(data);
-  //     for(var i = 0; i < ramos.length; i++ ) {
-  //       ramosEmpresas.push(ramos[i]._id)
-  //     }
-  //   }
-  // })
+  $.ajax({
+    method: "POST",
+    url: "/buscarRamo",  
+    success: function(data) {
+    var ramos = JSON.parse(data);
+      for(var i = 0; i < ramos.length; i++ ) {
+        ramosEmpresas.push(ramos[i]._id)
+      }
+    }
+  })
 
 
 //    $.ajax({
