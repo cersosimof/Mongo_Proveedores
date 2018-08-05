@@ -4,9 +4,9 @@
 //    }
 // }
 
-// $( function() {
-//   $( document ).ready(function() {
-//     var ramosEmpresas = [];
+$( function() {
+  $( document ).ready(function() {
+    var ramosEmpresas = [];
 //     var nombresEmpresas = [];
 
   // $.ajax({
@@ -32,22 +32,22 @@
 //     }
 //  });
 
-    // $( "#tags" ).autocomplete({
-    //   source: ramosEmpresas,
-    //   select: function(event, ui) {   
-    //       location.href="/ver/" + ui.item.value;
-    //   }
-    // });
+    $( "#tags" ).autocomplete({
+      source: ramosEmpresas,
+      select: function(event, ui) {   
+          location.href="/ver/" + ui.item.value;
+      }
+    });
 
-    // $( "#ramo" ).autocomplete({
-    //   source: ramosEmpresas
-    // });
+    $( "#ramo" ).autocomplete({
+      source: ramosEmpresas
+    });
 
 //     $( "#agregaEmpresa, #buscadorModif" ).autocomplete({
 //       source: nombresEmpresas
 //     });
 
-//     });
-// });
+    });
+});
 
 
