@@ -15,7 +15,11 @@ $( function() {
     success: function(data) {
     var ramos = JSON.parse(data);
       for(var i = 0; i < ramos.length; i++ ) {
-        ramosEmpresas.push(ramos[i]._id)
+        var ramo = ramos[i]._id
+        var arrayRamo = ramo.split(",");
+        for(var i = 0; i < arrayRamo.length; i++ ) {
+          ramosEmpresas.push(arrayRamo[i])
+        }
       }
     }
   })
