@@ -59,10 +59,9 @@ router.post('/:nroExp', function(req, res) {
                     var empresa = results[0].nombre;
                     var invitado = results[0].invitado;
                     var cotizo = results[0].cotizo;
-                    var promedio = (cotizo/invitado)*100;
+                    var promedio = ((cotizo/invitado)*100).toFixed();
                     Proveedor.update({ 'nombre' : empresa }, {'prom' : promedio}, function(err, results) {
-                        console.log('Se actualizo el promedio')
-                        console.log('------------------------')
+                        console.log('---------- Se actualizo el promedio ----------')
                     })
                 })
             }
@@ -72,10 +71,9 @@ router.post('/:nroExp', function(req, res) {
                 var empresa = results[0].nombre;
                 var invitado = results[0].invitado;
                 var cotizo1 = results[0].cotizo;
-                var promedio = (cotizo1/invitado)*100;
-                Proveedor.update({ 'nombre' : empresa }, {'prom' : promedio}, function(err, results) {
-                    console.log('Se actualizo el promedio')
-                    console.log('----------------------------')
+                var promedio1 = ((cotizo1/invitado)*100).toFixed();
+                Proveedor.update({ 'nombre' : empresa }, {'prom' : promedio1}, function(err, results) {
+                    console.log('---------- Se actualizo el promedio ----------')
                 })
             })
             res.render('feedbackEmpresa', { 'feedbackSi' : 'Gracias por la informacion', 'usuario' : req.session.user, 'nroExp' : nroExp})

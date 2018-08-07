@@ -105,3 +105,7 @@ html {
   text-decoration: none;
   text-align: center;
 }
+
+.limitarDecimales {
+  font-weight: bold;
+}
