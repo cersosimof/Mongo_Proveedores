@@ -22,6 +22,10 @@ router.post('/', function(req, res, next) {
       'cotizo' : 0,
       'prom' : 0
  })
+
+
+
+
     user.save(function(err, doc){
       if(err) {
          res.send('Error al intentar guardar el proveedor.'); //ver de poner algo mas copado

@@ -3,28 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// var session = require('express-session');
 var cors = require('cors');
 var app = express();
-const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-
 // mongoose.connect("mongodb://localhost/proveedores");
-mongoose.connect('mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
-{ useNewUrlParser : true
-});
-
-app.use(session({
-  secret: 'poronga',
-  store: new MongoStore({
-    // url: 'mongodb://localhost/proveedores',   
-    url: 'mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
-    ttl: 14 * 24 * 60 * 60 // = 14 days. Default
-  })
-}));
-
+mongoose.connect('mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud', { useNewUrlParser : true });
 
 //RUTAS
 var indexRouter = require('./routes/index');
@@ -54,7 +40,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
+app.use(session({
+  secret: 'poronga',
+  store: new MongoStore({
+    // url: 'mongodb://localhost/proveedores',   
+    url: 'mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
+    ttl: 14 * 24 * 60 * 60,
+    resave: true,
+    saveUninitialized: true // = 14 days. Default
+  })
+}));
 
 //RUTAS
 app.use('/', indexRouter);

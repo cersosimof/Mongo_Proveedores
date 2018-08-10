@@ -4,26 +4,36 @@
 //    }
 // }
 
-$( function() {
-  $( document ).ready(function() {
+
+  $('#tags').click(function() {
     var ramosEmpresas = [];
-    var nombresEmpresas = [];
+    // var nombresEmpresas = [];
 
   $.ajax({
     method: "POST",
     url: "/buscarRamo",  
     success: function(data) {
     var ramos = JSON.parse(data);
-      for(var i = 0; i < ramos.length; i++ ) {
-        var ramo = ramos[i]._id
-        var arrayRamo = ramo.split(",");
-        for(var i = 0; i < arrayRamo.length; i++ ) {
-          ramosEmpresas.push(arrayRamo[i])
+    superArray = []
+    for(var i = 0; i < ramos.length; i++ ) {
+      var todosLosRamos = ramos[i]._id.split(',')
+      for(var x = 0; x < todosLosRamos.length; x++ ) {
+        var ramoEmpresa = todosLosRamos[x];
+
+        if(ramoEmpresa[0] == " ") {
+        ramoEmpresa = ramoEmpresa.split("");
+        ramoEmpresa.shift()
+        ramoEmpresa = ramoEmpresa.join("")
+        }
+
+        var pregunta = ramosEmpresas.indexOf(todosLosRamos[x])
+        if(pregunta === (-1)) {
+          ramosEmpresas.push(ramoEmpresa)
         }
       }
-    }
-  })
+    }}
 
+  })
 
 
 
@@ -54,6 +64,6 @@ $( function() {
 //     });
 
     });
-});
+
 
 
