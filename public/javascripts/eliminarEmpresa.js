@@ -1,23 +1,14 @@
-// var express = require('express');
-// var router = express.Router();
-// var mysql = require('mysql');
-// var pool  = mysql.createPool({
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : '',
-//     database : 'proveedores'
-// });
+var express = require('express');
+var router = express.Router();
+var Exp = require('../../public/models/modelExpediente').Exp;
 
-// module.exports = (req, res, next) => {
-//     var nroExp = req.params.nroExp;
-//     var id = req.params.id; 
-//     pool.query('DELETE FROM listadoexpediente WHERE nroExpediente = ? AND idEmpresa = ?',[nroExp, id], (err, results) => {
-//     if(err) throw err;        
-//     if (results.affectedRows == 0){
-//     console.log("no hay resultados")
-//     } else {
-//     console.log('deleted ' + results.affectedRows + ' rows');
-//     res.redirect("/armar/"+nroExp)
-//     }
-// })
-// }
+module.exports = (req, res, next) => {
+    var nroExp = req.params.nroExp;
+    var empresa = req.params.empresa; 
+
+    Exp.update({"nroExp" : nroExp }, { $pull: { empresas: { nombre: empresa } } }, { multi: true }, function(err, results) {
+        console.log(results)
+    })
+    res.redirect("/armar/"+nroExp)
+}
+

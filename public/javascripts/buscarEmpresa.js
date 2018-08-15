@@ -1,27 +1,17 @@
 var express = require('express');
 var router = express.Router();
-// var Proveedor = require('../public/models/modelProveedor').Proveedor;
-var mongoose = require('mongoose')
+var Proveedor = require('../../public/models/modelProveedor').Proveedor;
 
 module.exports = (req, res, next) => {
-    var buscarEmpresa = function(nombre) {
-        AccountModel.aggregate([
-            { $group: {
-                _id: '$nombre'
-            }}
-        ], function (err, result) {
-            if (err) {
-                if (err) throw err;
-            } else {
-                res.send(JSON.stringify(result));
-            }
-
-        });
+    Proveedor.aggregate( [ { $group : { _id : "$nombre" } } ],  function(error, results) {
+    if (error) throw error;
+    var superArray = []
+    for (var i = 0; i < results.length; i++){
+        var empresa = superArray.indexOf(results[i])
+        if(empresa === (-1)) {
+            superArray.push(results[i]._id)
+        }
     }
+    res.send(JSON.stringify(superArray));
+    })
 }
-
-
-        // db.proveedors.aggregate( [ {$group : { _id : "$nombre" } } ] )
-
-
-        // db.proveedors.aggregate( [ {$group : { _id : "$nombre" } } ] )

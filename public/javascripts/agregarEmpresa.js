@@ -1,30 +1,27 @@
 var express = require('express');
 var router = express.Router();
-
+var Proveedor = require('../../public/models/modelProveedor').Proveedor;
+var Exp = require('../../public/models/modelExpediente').Exp;
 
 module.exports = (req, res, next) => {
     var nroExp = req.body.nroExp;
     var empresa = req.body.empresa;
 
-    // User.find({ 'user' : user, 'pass' : pass}, function(err, results){ //ver que onda
-    // //busca parciales con /lodeaca/
+    Proveedor.find({ "nombre" : empresa }, function(error, results){
 
-    var buscar = "%"+empresa+"%";
-    pool.query('SELECT idEmpresa FROM proveeores WHERE nombre LIKE ?',[buscar], (err, results) => {
-    if(err) throw err;                  
-    if (results.length == 0){
-    console.log("no hay resultados")
 
-    } else {
 
-        for (var i = 0; i < results.length; i++){
-            var empresa = results[i].idEmpresa;
-            pool.query('INSERT INTO listadoexpediente(nroExpediente, idEmpresa) VALUES (?, ?)', [nroExp, empresa], (err, results) => {
-            if(err) throw err;
-            console.log('Empresa nueva Agregada')     
-            })
-        }
-        res.redirect("armar/"+nroExp)
-    }
-})
+        
+        var emp = results;
+        Exp.update({"nroExp" : nroExp }, { $push: { empresas:  emp  } }, { multi: true }, function(err, results) {
+            if(err) {
+                console.log(err)
+            } else {
+                res.redirect("armar/"+nroExp)
+            }
+
+        })
+    })
+
+
 }

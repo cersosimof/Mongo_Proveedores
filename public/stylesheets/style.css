@@ -23,7 +23,9 @@ html {
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
 
-
+html {
+  max-height: 100%;
+}
 /* LOGIN */
 
 
@@ -112,9 +114,9 @@ html {
 
 
 /* nuevo modelo (si no queda borrar esto) */
-.container {
+/* .container {
   max-width: 960px;
-}
+} */
 
 /*
  * Custom translucent site header
@@ -178,7 +180,7 @@ html {
   -ms-flex: 1;
   flex: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: auto) {
   .flex-md-equal > * {
     -ms-flex: 1;
     flex: 1;
@@ -187,3 +189,21 @@ html {
 
 .overflow-hidden { overflow: hidden; }
 /*hasta aca */
+
+.box {
+  margin-top: 2%;
+  /* margin-bottom: 2%;  */
+}
+
+.imagenFondo{
+    background-image: url('/imagenesWeb/compra2.jpg') ;
+    background-position: center;
+    /* background-size: auto; */
+  /* background-position: center;  */
+    height: 100vh; 
+    widows: 100vh;
+}
+
+html {
+  max-height: auto;
+}

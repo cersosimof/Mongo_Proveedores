@@ -27,8 +27,8 @@ var crearUsuario = require('./routes/crearUsuario')
 var buscarRamo = require('./public/javascripts/buscarRamos')
 var buscarEmpresa = require('./public/javascripts/buscarEmpresa')
 
-// var agregarRuta = require('./public/javascripts/agregarEmpresa')
-// var eliminarRuta = require('./public/javascripts/eliminarEmpresa')
+var agregarRuta = require('./public/javascripts/agregarEmpresa')
+var eliminarRuta = require('./public/javascripts/eliminarEmpresa')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,12 +61,13 @@ app.use('/feedback', feedbackRuta);
 app.use('/login', loginRuta);
 app.use('/logout', logoutRuta)
 app.use('/crearUsuario', crearUsuario)
+
 //AJAX
 app.post('/buscarRamo', buscarRamo )
 app.post('/buscarEmpresas', buscarEmpresa)
 
-// app.post('/agregar', agregarRuta)
-// app.get('/eliminar/:nroExp/:id', eliminarRuta)
+app.post('/agregar', agregarRuta)
+app.get('/eliminar/:nroExp/:empresa', eliminarRuta)
 
 app.get('/errorlog', function (req, res) {res.render('errorlog')});
 
