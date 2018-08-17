@@ -1,96 +1,5 @@
-
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-
-
-.pricing-header {
-  max-width: 700px;
-}
-
-.card-deck .card {
-  min-width: 220px;
-}
-
-.border-top { border-top: 1px solid #e5e5e5; }
-.border-bottom { border-bottom: 1px solid #e5e5e5; }
-
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-html {
-  max-height: 100%;
-}
-/* LOGIN */
-
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.imagenAlta {
-  background-color: darkgrey;
-  border-radius: 10%;
-}
-
-.tamanoImagen {
-  width: auto;
-  height: 150px;
-  padding: 1%;
-  margin: 2%;
-  display:block;
-  margin:auto;
-  border-radius: 50%;
-}
-
-.boxEmpresa { 
-  width: 22%;
-  float: left;
-  border: 1px black solid;
-  margin: 1.5%;
-  border-radius: 5%;
-}
-
-.boxEmpresa:hover {
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+* {
+  border-radius: 0%;
 }
 
 .footer {
@@ -98,112 +7,32 @@ html {
   width: 100%;;
 }
 
-.tituloProducto {
-  color: darkolivegreen;
-  font-weight: bold;
-}
-
-.textoProducto {
-  text-decoration: none;
-  text-align: center;
-}
-
 .limitarDecimales {
   font-weight: bold;
 }
-
-
-/* nuevo modelo (si no queda borrar esto) */
-/* .container {
-  max-width: 960px;
-} */
-
-/*
- * Custom translucent site header
- */
-
-.site-header {
-  background-color: rgba(0, 0, 0, .85);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-}
-.site-header a {
-  color: #999;
-  transition: ease-in-out color .15s;
-}
-.site-header a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/*
- * Dummy devices (replace them with your own or something else entirely!)
- */
-
-.product-device {
-  position: absolute;
-  right: 10%;
-  bottom: -30%;
-  width: 300px;
-  height: 540px;
-  background-color: #333;
-  border-radius: 21px;
-  -webkit-transform: rotate(30deg);
-  transform: rotate(30deg);
-}
-
-.product-device::before {
-  position: absolute;
-  top: 10%;
-  right: 10px;
-  bottom: 10%;
-  left: 10px;
-  content: "";
-  background-color: rgba(255, 255, 255, .1);
-  border-radius: 5px;
-}
-
-.product-device-2 {
-  top: -25%;
-  right: auto;
-  bottom: 0;
-  left: 5%;
-  background-color: #e5e5e5;
-}
-
-
-/*
- * Extra utilities
- */
-
-.flex-equal > * {
-  -ms-flex: 1;
-  flex: 1;
-}
-@media (min-width: auto) {
-  .flex-md-equal > * {
-    -ms-flex: 1;
-    flex: 1;
-  }
-}
-
-.overflow-hidden { overflow: hidden; }
-/*hasta aca */
 
 .box {
   margin-top: 2%;
   /* margin-bottom: 2%;  */
 }
 
+.formLogin {
+  padding-top: 10%;
+}
+
+.blur {
+  background: rgba(255,255,255,0.7);
+  margin-left: 35%;
+  margin-right: 35%;
+  /* border-radius: 5%; */
+}
+
 .imagenFondo{
-    background-image: url('/imagenesWeb/compra2.jpg') ;
+    background: url('/imagenesWeb/xxx.jpg') ;
     background-position: center;
-    /* background-size: auto; */
-  /* background-position: center;  */
+    background-attachment: contain;
+    background-size: cover;
     height: 100vh; 
     widows: 100vh;
 }
 
-html {
-  max-height: auto;
-}
