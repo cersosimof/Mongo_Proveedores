@@ -47,15 +47,6 @@
 {{/if}}
 </div>
 
-<script>
-var porcentajes = document.querySelectorAll(".limitarDecimales");
-        for(var i = 0; i < porcentajes.length; i++ ) {
-          if(porcentajes[i].innerHTML > 71) {
-            porcentajes[i].style.color = "green"
-          } else if ((40 < porcentajes[i].innerHTML) && (porcentajes[i].innerHTML < 70)) {
-            porcentajes[i].style.color = "orange"
-          } else if (porcentajes[i].innerHTML < 39) {
-            porcentajes[i].style.color = "red"
-          }
-        }
-</script>
+<script src="../../javascripts/jquery/jquery.js"></script>
+<script src="../../javascripts/jquery/jquery-ui.js"></script>
+<script src="../javascripts/vistas/ver-js.js"></script>

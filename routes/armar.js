@@ -3,6 +3,7 @@ var router = express.Router();
 var Exp = require('../public/models/modelExpediente').Exp;
 var Proveedor = require('../public/models/modelProveedor').Proveedor;
 
+//armar GET
 router.get('/', function(req, res) {          
     if (req.session.user) {
         res.render('armar', {'usuario' : req.session.user})
@@ -11,17 +12,18 @@ router.get('/', function(req, res) {
     }
 })
 
+
 router.post('/', function(req, res) {
     if (req.session.user) {  //SI ESTA LOGUEADO  
         Proveedor.find(  { "ramo" : {$regex : req.body.ramo} }, function(err, results)  {
             if(results.length == 0){
             //SI LA BUSQUEDA NO OBTIENE RESULTADOS
-            res.render("armar", { 'mensaje' : 'No se encontraron empresas de este robro', 'usuario' : req.session.user})
+            res.render("armar", { 'mensaje' : 'No se encontraron empresas de este rubro', 'usuario' : req.session.user})
             } else {
                 var resultados = results;
                 var armarExp = new Exp ( { 'nroExp' : req.body.nroExp, 'empresas' : resultados, 'feedback' : 'no' })
                 armarExp.save()
-                res.redirect("/armar/"+req.body.nroExp)
+                res.redirect(307, "/armar/"+req.body.nroExp) //redirecciona por POST
                 }
         })
     } else {
@@ -30,7 +32,7 @@ router.post('/', function(req, res) {
 })
 
 
-router.get('/:nroExp', function(req, res) {          
+router.post('/:nroExp', function(req, res) {          
     if (req.session.user) {
         var nroExp = req.params.nroExp;
         Exp.find({ 'nroExp' : nroExp }, {empresas : 1, _id : 0}, function(err, results){

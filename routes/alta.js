@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
       if(err) {
          res.send('Error al intentar guardar el proveedor.'); //ver de poner algo mas copado
       } else { 
-        res.render('alta', {'altaOk' : 'Proveedor ingresado en la base de datos', 'usuario' : req.session.user })
+        res.redirect('/')
       }
     });
   })

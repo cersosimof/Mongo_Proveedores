@@ -3,6 +3,7 @@ var router = express.Router();
 var Proveedor = require('../public/models/modelProveedor').Proveedor;
 var mongoose = require('mongoose')
 
+//modificar GET
 router.get('/', function(req, res) {          
     if (req.session.user) {
         res.render('modificar', {'usuario' : req.session.user})
@@ -42,7 +43,7 @@ router.post('/:empresa/update', function(req, res) {
             if (results.length == 0){
             res.render('errorlog');
             } else {
-            res.render('modificar', {'usuario' : req.session.user, 'mensaje' : 'El proveedor se modifico correctamente'})
+            res.redirect('/')
             } 
         });
     } else {

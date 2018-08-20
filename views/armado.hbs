@@ -1,6 +1,6 @@
 
-<h1 id="nroExpID">EMPRESAS A INVITAR EXP. NUMERO: {{nroExp}}.</h1>
-<table class="table">
+<h1 class="table tablaEmpresasAInvitar">EMPRESAS A INVITAR EXP. NUMERO: {{nroExp}}.</h1>
+<table class="table tablaEmpresasAInvitar">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nombre</th>
@@ -17,7 +17,7 @@
       <td>{{correo}}</td>
       <td>{{telefono}}</td>
       <td>{{contacto}}</td>
-      <td> <button onclick="eliminar('{{nombre}}')">ELIMINAR</button></td>
+      <td> <button class="btn btn-danger" onclick="eliminar('{{nombre}}')">Eliminar</button></td>
     </tr>
         {{/each}}
   </tbody>
@@ -25,12 +25,16 @@
 
 <input type="hidden" value="{{nroExp}}" id="expediente">
 
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light tablaEmpresasAInvitar">
   <div class="ui-widget">
   <form class="form-inline"  action="/agregar" method="POST">
-    <input class="form-control mr-sm-2" type="search" placeholder="Empresa" aria-label="Search" name="empresa" id="agregaEmpresa">
+    <input class="form-control mr-sm-2" type="search" placeholder="Empresa" aria-label="Search" autocomplete="off" name="empresa" id="agregaEmpresa">
     <input type="hidden" value="{{nroExp}}" name="nroExp">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Agregar</button>
   </form>
   </div>
 </nav>
+
+<script src="../../javascripts/jquery/jquery.js"></script>
+<script src="../../javascripts/jquery/jquery-ui.js"></script>
+<script src="../javascripts/vistas/modificarJS.js"></script>

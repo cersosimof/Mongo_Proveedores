@@ -43,12 +43,12 @@ router.post('/:nroExp', function(req, res) {
             for (var i = 0; i < cotizo.length; i++) {
                 Proveedor.update({ 'nombre' : cotizo[i] }, {$inc : {'cotizo' : 1}},function(err, results) {
                     console.log('La empresa sumo 1 nuevo en cotizo')
-                    console.log('-------------------------------------------------')
+                    console.log('-------------------------------------------------(nota 4)')
                 })
             }
         } else { //si pasa una sola empresa, solo pasa el nombre
             Proveedor.update({ 'nombre' : cotizo }, {$inc : {'cotizo' : 1}},function(err, results) {
-                console.log('La empresa sumo 1 nuevo en cotizo')
+                console.log('La empresa sumo 1 nuevo en cotizo (note 3)')
                 console.log('-------------------------------------------------')
             })
         }
@@ -61,11 +61,11 @@ router.post('/:nroExp', function(req, res) {
                     var cotizo = results[0].cotizo;
                     var promedio = ((cotizo/invitado)*100).toFixed();
                     Proveedor.update({ 'nombre' : empresa }, {'prom' : promedio}, function(err, results) {
-                        console.log('---------- Se actualizo el promedio ----------')
+                        console.log('---------- Se actualizo el promedio (NOTE 1) ----------')
                     })
                 })
             }
-            res.render('feedbackEmpresa', { 'feedbackSi' : 'Gracias por la informacion', 'usuario' : req.session.user, 'nroExp' : nroExp})
+            res.redirect('/')
         } else { //si pasa una sola empresa, solo pasa el nombre
             Proveedor.find({ 'nombre' : cotizo }, { 'nombre' : 1,'invitado' : 1, 'cotizo' : 1, _id : 0 },function(err, results) {
                 var empresa = results[0].nombre;
@@ -73,10 +73,10 @@ router.post('/:nroExp', function(req, res) {
                 var cotizo1 = results[0].cotizo;
                 var promedio1 = ((cotizo1/invitado)*100).toFixed();
                 Proveedor.update({ 'nombre' : empresa }, {'prom' : promedio1}, function(err, results) {
-                    console.log('---------- Se actualizo el promedio ----------')
+                    console.log('---------- Se actualizo el promedio (NOTE 2)----------')
                 })
             })
-            res.render('feedbackEmpresa', { 'feedbackSi' : 'Gracias por la informacion', 'usuario' : req.session.user, 'nroExp' : nroExp})
+            res.redirect('/')
         } 
     } else {
         res.redirect('/');  
