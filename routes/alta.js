@@ -1,17 +1,15 @@
-var express = require('express');
-var router = express.Router();
 var Proveedor = require('../public/models/modelProveedor').Proveedor;
 
 
-router.get('/', function(req, res) {
+exports.inicio = function(req, res) {
     if(req.session.user){         
     res.render('alta', {'usuario' : req.session.user})
     } else {
       res.redirect('/')
     }
-})
+}
 
-router.post('/', function(req, res, next) {
+exports.recibirDatos = function(req, res, next) {
     var user = new Proveedor({  
       'nombre' : req.body.nombre,
       'correo' : req.body.correo,
@@ -23,9 +21,6 @@ router.post('/', function(req, res, next) {
       'prom' : 0
  })
 
-
-
-
     user.save(function(err, doc){
       if(err) {
          res.send('Error al intentar guardar el proveedor.'); //ver de poner algo mas copado
@@ -33,6 +28,4 @@ router.post('/', function(req, res, next) {
         res.redirect('/')
       }
     });
-  })
-
-module.exports = router;
+  }

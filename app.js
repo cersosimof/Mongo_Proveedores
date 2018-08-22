@@ -53,9 +53,20 @@ app.use(session({
 
 //RUTAS
 app.use('/', indexRouter);
-app.use('/alta', altaRuta)
+
+// ### ARMAR ### 
+app.get('/alta', altaRuta.inicio)
+app.post('/alta', altaRuta.recibirDatos)
+
+
 app.use('/modificar', modifRuta)
-app.use('/armar', armarRuta)
+// app.use('/armar', armarRuta)
+
+// ### ARMAR ### 
+app.get('/armar', armarRuta.inicio)
+app.post('/armar', armarRuta.inicio1)
+app.get('/armar/:nroExp', armarRuta.mostrar)
+
 app.use('/ver', verRuta);
 app.use('/feedback', feedbackRuta);
 app.use('/login', loginRuta);
