@@ -18,6 +18,9 @@ router.get('/', function(req, res) {
 router.get('/:nroExp', function(req, res) {          
     if (req.session.user) {
         var nroExp = req.params.nroExp;
+
+
+
         //PONER EL QUE BUSCA LAS EMPRESAS EN LISTA
         Exp.find({ 'nroExp' : nroExp }, {empresas : 1, _id : 0}, [nroExp], (err, results) => {
             if(err) throw err;
@@ -33,26 +36,26 @@ if (req.session.user) {
     var nroExp = req.params.nroExp;
     var cotizo = req.body.contesto; 
 
-/* CAMBIA EL ESTADO DE FEEDBACK DE SI A NO */
-    Exp.update({ 'nroExp' : nroExp }, {$set : {'feedback' : 'si'}}, function (err, results) {
-        console.log(' ___ EL EXPEDIENTE YA FUE FEEDBACKEADO ___')
-    })
-/* CAMBIA EL ESTADO DE FEEDBACK DE SI A NO */
-
-/* SUMA UNO A TODAS LAS EMPRESAS QUE PARTICIPARON */
-Exp.find({ 'nroExp' : nroExp }, {empresas : 1, _id : 0}, function(err, results){
-    var largo = results[0].empresas.length
-    var empresasParticipantes = [];
-    for (var i = 0; i < largo; i++) {
-        empresasParticipantes.push(results[0].empresas[i].nombre);
-    }
-    for (var i = 0; i < empresasParticipantes.length; i++) {
-        Proveedor.update({ 'nombre' : empresasParticipantes[i] }, {$inc : {'invitado' : 1}},function(err, results) {
-            console.log('___ SE SUMO 1 EN LA EMPRESAS QUE PARTICIPO ___')
+        /* CAMBIA EL ESTADO DE FEEDBACK DE SI A NO */
+            Exp.update({ 'nroExp' : nroExp }, {$set : {'feedback' : 'si'}}, function (err, results) {
+                console.log(' ___ EL EXPEDIENTE YA FUE FEEDBACKEADO ___ ')
+            })
+        /* CAMBIA EL ESTADO DE FEEDBACK DE SI A NO */
+        
+        /* SUMA UNO A TODAS LAS EMPRESAS QUE PARTICIPARON */
+        Exp.find({ 'nroExp' : nroExp }, {empresas : 1, _id : 0}, function(err, results){
+            var largo = results[0].empresas.length
+            var empresasParticipantes = [];
+            for (var i = 0; i < largo; i++) {
+                empresasParticipantes.push(results[0].empresas[i].nombre);
+            }
+            for (var i = 0; i < empresasParticipantes.length; i++) {
+                Proveedor.update({ 'nombre' : empresasParticipantes[i] }, {$inc : {'invitado' : 1}},function(err, results) {
+                    console.log(' ___ SE SUMO 1 EN LA EMPRESAS QUE PARTICIPO ___ ')
+                })
+            }
         })
-    }
-})
-/* SUMA UNO A TODAS LAS EMPRESAS QUE PARTICIPARON */
+        /* SUMA UNO A TODAS LAS EMPRESAS QUE PARTICIPARON */
 
 /* SUMA UNO A LAS EMPRESAS QUE COTIZARON */
     if(Array.isArray(cotizo)) {
@@ -71,19 +74,16 @@ Exp.find({ 'nroExp' : nroExp }, {empresas : 1, _id : 0}, function(err, results){
 
         /*CALCULARLES EL PROMEDIO A LAS EMPRESAS QUE PARTICUPARON */
         for (var x = 0; x < arrayEmpresas.length; x++) {
-        Proveedor.find({ 'nombre' : arrayEmpresas[x] }, { 'nombre' : 1,'invitado' : 1, 'cotizo' : 1, _id : 0 },function(err, results) {
-            var empresa = results[0].nombre;
-            var invitado = results[0].invitado;
-            var cotizo = results[0].cotizo;
-            var promedio = ((cotizo/invitado)*100).toFixed();
+            Proveedor.find({ 'nombre' : arrayEmpresas[x] }, { 'nombre' : 1,'invitado' : 1, 'cotizo' : 1, _id : 0 },function(err, results) {
+                var empresa = results[0].nombre;
+                var invitado = results[0].invitado;
+                var cotizo = results[0].cotizo;
+                var promedio = ((cotizo/invitado)*100).toFixed();
 
-            console.log(promedio);
-            
-            Proveedor.update({ 'nombre' : empresa }, { 'prom' : promedio}, function(err, results) {
-                console.log('___ SE ACTUALIZO EL PROMEDIO ___')
-                console.log(results)
+                Proveedor.update({ 'nombre' : empresa }, { 'prom' : promedio}, function(err, results) {
+                    console.log('___ SE ACTUALIZO EL PROMEDIO ___')
+                })
             })
-        })
         }
         /*CALCULARLES EL PROMEDIO A LAS EMPRESAS QUE PARTICUPARON */
         res.redirect('/')
