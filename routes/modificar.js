@@ -1,27 +1,25 @@
-var express = require('express');
-var router = express.Router();
 var Proveedor = require('../public/models/modelProveedor').Proveedor;
 var mongoose = require('mongoose')
 
 //modificar GET
-router.get('/', function(req, res) {          
+exports.inicio = function(req, res) {         
     if (req.session.user) {
         res.render('modificar', {'usuario' : req.session.user})
     } else {
         res.redirect('/');  
     }
-})
+}
 
-router.post('/', function(req, res) {
+exports.inicioP = function(req, res) {  
     var empresa = req.body.empresa;
     if (req.session.user) {
         res.redirect('/modificar/'+ empresa)
     } else {
         res.redirect('/');  
     }
-})
+}
 
-router.get('/:empresa', function(req, res) {
+exports.empresa = function(req, res) {  
     if (req.session.user) {
         Proveedor.find({ 'nombre' : req.params.empresa }, (err, results) => {
             if(err) throw err;
@@ -34,9 +32,9 @@ router.get('/:empresa', function(req, res) {
     } else {
         res.render('index');  
     }
-})
+}
 
-router.post('/:empresa/update', function(req, res) {
+exports.modificar = function(req, res) {
     if (req.session.user) {
         Proveedor.update({ 'nombre' : req.params.empresa   }, { 'correo' : req.body.correo, 'telefono' : req.body.telefono, 'contacto' : req.body.contacto, 'ramo' : req.body.ramo }, (err, results) => {
             if(err) throw err;
@@ -49,6 +47,6 @@ router.post('/:empresa/update', function(req, res) {
     } else {
         res.redirect('/');  
     }
-})
+}
 
-module.exports = router;
+

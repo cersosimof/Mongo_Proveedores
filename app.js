@@ -58,17 +58,39 @@ app.use('/', indexRouter);
 app.get('/alta', altaRuta.inicio)
 app.post('/alta', altaRuta.recibirDatos)
 
-
-app.use('/modificar', modifRuta)
-// app.use('/armar', armarRuta)
+// ### MODIFICAR ###
+app.get('/modificar', modifRuta.inicio)
+app.post('/modificar', modifRuta.inicioP)
+app.get('/modificar/:empresa', modifRuta.empresa)
+app.post('/modificar/:empresa/update', modifRuta.modificar)
 
 // ### ARMAR ### 
 app.get('/armar', armarRuta.inicio)
 app.post('/armar', armarRuta.inicio1)
 app.get('/armar/:nroExp', armarRuta.mostrar)
 
-app.use('/ver', verRuta);
-app.use('/feedback', feedbackRuta);
+// ### VER ###
+app.get('/ver', verRuta.inicio);
+app.post('/ver', verRuta.inicioP);
+app.get('/ver/:ramo', verRuta.mostrar);
+
+// ### FEEDBACK ###
+app.get('/feedback', feedbackRuta.select);
+app.get('/feedback/:nroExp', feedbackRuta.listado);
+app.post('/feedback/:nroExp', feedbackRuta.enviar1, feedbackRuta.enviar2);
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.use('/login', loginRuta);
 app.use('/logout', logoutRuta)
 app.use('/crearUsuario', crearUsuario)

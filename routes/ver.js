@@ -1,23 +1,24 @@
-var express = require('express');
-var router = express.Router();
 var Proveedor = require('../public/models/modelProveedor').Proveedor;
 
-router.get('/', function(req, res) {          
+
+exports.inicio = function(req, res) {          
     if (req.session.user) {
         res.render('ver', {'usuario' : req.session.user})
     }
-})
+}
 
-router.post('/', function(req, res) {
+
+exports.inicioP = function(req, res) { 
     var ramo = req.body.ramo;
     if (req.session.user) {
         res.redirect('/ver/'+ramo)
     } else {
         res.render('index');  
     }
-})
+}
 
-router.get('/:ramo', function(req, res) {
+
+exports.mostrar = function(req, res) { 
     Proveedor.find(  { "ramo" : {$regex : req.params.ramo} }, function(err, results)  {
         if (err) throw err;
         if(results.length == 0){
@@ -27,6 +28,4 @@ router.get('/:ramo', function(req, res) {
             res.render('ver', {'usuario' : req.session.user, 'productos' : results, 'dividir' : '/'})       
         }
     })
-})
-
-module.exports = router;
+}
