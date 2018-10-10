@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var proveedor_schema = new Schema({
     nombre : String,
     correo : String,
+    cuit : Number,
     telefono : String,
     contacto : String,
     ramo : String,

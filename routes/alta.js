@@ -12,6 +12,7 @@ exports.inicio = function(req, res) {
 exports.recibirDatos = function(req, res, next) {
     var user = new Proveedor({  
       'nombre' : req.body.nombre,
+      'cuit' : req.body.cuit,
       'correo' : req.body.correo,
       'telefono' : req.body.telefono,
       'contacto' : req.body.contacto,
@@ -23,7 +24,7 @@ exports.recibirDatos = function(req, res, next) {
 
     user.save(function(err, doc){
       if(err) {
-         res.send('Error al intentar guardar el proveedor.'); //ver de poner algo mas copado
+         res.send('Error al intentar guardar el proveedor, intentelo nuevamente.'); //ver de poner algo mas copado
       } else { 
         res.redirect('/')
       }

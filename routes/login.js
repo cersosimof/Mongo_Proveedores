@@ -1,17 +1,16 @@
-var express = require('express');
-var router = express.Router();
+
 var md5 = require('md5');
 var User = require('../public/models/modelUsuario').User;
 
-router.get('/', function(req, res) {
+exports.inicio =  function(req, res) {
   if(req.session.user){
     res.render('index', { usuario : req.session.user });
   } else {
     res.render('errorlog')
   }
-});
+}
 
-router.post('/', function(req, res) {
+exports.login = function(req, res) {
   var user = req.body.user;
   var pass = md5(req.body.pass);
 
@@ -25,6 +24,4 @@ router.post('/', function(req, res) {
       res.redirect("/")
     }
   });
-});
-
-module.exports = router;
+}

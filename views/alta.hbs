@@ -5,27 +5,40 @@
 </div> --}}
 {{else}}
 <form  action="/alta" method="POST" id="formuAlta" onsubmit='return validar()'>
-	<div class="form-group">
-		<label for="idNombre">Nombre o Razon social:</label>
-		<input type="text" name="nombre" class="form-control" id="idNombre" required autocomplete="off">
-	</div>
-	<div class="form-group">
-		<label for="idCorreo">Correo Electronico:</label>
-		<input type="mail" name="correo" class="form-control" id="idCorreo" required autocomplete="off">
-	</div>
-	<div class="form-group">
-		<label for="idTel">Telefono:</label>
-		<input type="text" name="telefono" placeholder="4346-7300 int 7722" class="form-control" id="idTel" required autocomplete="off">
-	</div>
-	<div class="form-group">
-		<label for="idContacto">Contacto:</label>
-		<input type="text" name="contacto" placeholder="Vendedor, o persona de contacto" class="form-control" id="idContacto" autocomplete="off">
-	</div>
-	<div class="form-group">
-		<label for="irRamo">Ramo que vende:</label>
-		<input type="text" name="ramo" class="form-control" placeholder="Si son varios, separar por comas."id="idRamo" autocomplete="off">
-	</div>
-		<input type="submit" name="Cargar" value="Cargar Proveedor" class="btn btn-primary" id="botonAlta">
+        <div class="form-group">
+            <label for="idNombre">Nombre o Razon social:</label>
+            <input type="text" name="nombre" class="form-control" id="idNombre" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idCuit">CUIT:</label>
+            <input type="text" name="cuit" class="form-control" id="idCuit" onblur="borrarGuion()" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idCorreo">Correo Electronico:</label>
+            <input type="mail" name="correo" class="form-control" id="idCorreo" required >
+            <small id="emailHelp" class="form-text text-muted">Puede ingresar mas de una direccion separando con punto y coma.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="idTel">Telefonos:</label>
+            <input type="text" name="telefono" class="form-control" id="idTel" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idContacto">Persona de contacto:</label>
+            <input type="text" name="contacto"  class="form-control" id="idContacto" >
+        </div>
+
+        <div class="form-group">
+            <label for="irRamo">Ramos que vende:</label>
+            <input type="text" name="ramo" class="form-control" id="idRamo" >
+            <small id="emailHelp" class="form-text text-muted">Separar los distintos ramos con coma.</small>
+        </div>
+        
+        <input type="submit" name="Cargar" value="Alta Proveedor" class="btn-block btn btn-dark" id="botonAlta">
+
 </form>
 {{/if}}
 </div>

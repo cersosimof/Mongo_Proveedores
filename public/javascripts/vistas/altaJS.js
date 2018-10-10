@@ -1,14 +1,3 @@
-// $("#botonAlta").click(function() {
-//     alert('Gracias por la informacion, se actualizaran los promedios de participacion de las empresas.')
-//   });
-
-
-
-
-
-
-
-
 function validar () {
 
     //VALIDAR CORREO
@@ -20,7 +9,7 @@ function validar () {
             var count = count + 1;
         }
     };
-    console.log('pepe')
+
     if(count >= 2) {
         count = 1;
     } else {
@@ -36,4 +25,16 @@ function validar () {
     }
 
 
+}
+
+function borrarGuion() {
+    var nroCuit = document.querySelector('#idCuit').value.split("");
+    var cuitSinGuiones = [];
+
+    for (i = 0; i < nroCuit.length; i++) { 
+        if(nroCuit[i] != "-") {
+            cuitSinGuiones.push(nroCuit[i])
+        }
+    }
+    document.querySelector('#idCuit').value = cuitSinGuiones.join("");
 }

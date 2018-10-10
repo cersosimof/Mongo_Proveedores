@@ -26,7 +26,8 @@ exports.empresa = function(req, res) {
             if (results.length == 0){
             res.redirect('errorlog');
             } else {
-            res.render('modificar', {'empresa' : req.params.empresa, 'resultado' : results, 'usuario' : req.session.user})
+            res.render('modificar', { 'empresa' : req.params.empresa, 'resultado' : results, 'usuario' : req.session.user })
+            console.log(results)
             } 
         });
     } else {
@@ -36,7 +37,7 @@ exports.empresa = function(req, res) {
 
 exports.modificar = function(req, res) {
     if (req.session.user) {
-        Proveedor.update({ 'nombre' : req.params.empresa   }, { 'correo' : req.body.correo, 'telefono' : req.body.telefono, 'contacto' : req.body.contacto, 'ramo' : req.body.ramo }, (err, results) => {
+        Proveedor.update({ 'nombre' : req.params.empresa }, {'nombre' : req.body.nombre, 'correo' : req.body.correo, 'telefono' : req.body.telefono, 'contacto' : req.body.contacto, 'ramo' : req.body.ramo }, (err, results) => {
             if(err) throw err;
             if (results.length == 0){
             res.render('errorlog');

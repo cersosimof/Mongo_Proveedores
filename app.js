@@ -2,15 +2,15 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+// var logger = require('morgan');
+// var cors = require('cors');
 var app = express();
-
+var DB = require('./db');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-// mongoose.connect("mongodb://localhost/proveedores");
-mongoose.connect('mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud', { useNewUrlParser : true });
+
+mongoose.connect('mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'', { useNewUrlParser : true });
 
 //RUTAS
 var indexRouter = require('./routes/index');
@@ -34,17 +34,16 @@ var eliminarRuta = require('./public/javascripts/eliminarEmpresa')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(cors());
-app.use(logger('dev'));
+// app.use(cors());
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'poronga',
+  secret: 'facundo',
   store: new MongoStore({
-    // url: 'mongodb://localhost/proveedores',   
-    url: 'mongodb://cherso88:espora1436@ds213472.mlab.com:13472/provcrud',
+    url: 'mongodb://'+DB.user+':'+DB.pass+'@'+DB.port+'/'+DB.dbName+'',
     ttl: 14 * 24 * 60 * 60,
     resave: true,
     saveUninitialized: true // = 14 days. Default
@@ -79,20 +78,13 @@ app.get('/feedback', feedbackRuta.select);
 app.get('/feedback/:nroExp', feedbackRuta.listado);
 app.post('/feedback/:nroExp', feedbackRuta.enviar1, feedbackRuta.enviar2);
 
+// ### LOGIN / LOGOUT ###
+app.get('/login', loginRuta.inicio);
+app.post('/login', loginRuta.login);
+
+app.use('/logout', logoutRuta);
 
 
-
-
-
-
-
-
-
-
-
-
-app.use('/login', loginRuta);
-app.use('/logout', logoutRuta)
 app.use('/crearUsuario', crearUsuario)
 
 //AJAX

@@ -4,27 +4,40 @@
     {{#each resultado}}
     <div class="container">
         <form  action="../modificar/{{nombre}}/update" method="post">
-            <div class="form-group">
-                <label for="idNombre">Nombre o Razon social:</label>
-                <input type="text" name="nombre" readonly="readonly" class="form-control" id="idNombre" value="{{nombre}}">
-            </div>
-            <div class="form-group">
-                <label for="idCorreo">Correo Electronico:</label>
-                <input type="mail" name="correo" class="form-control" id="idCorreo" value="{{correo}}">
-            </div>
-            <div class="form-group">
-                <label for="idTel">Telefono:</label>
-                <input type="text" name="telefono" class="form-control" id="idTel" value="{{telefono}}">
-            </div>
-            <div class="form-group">
-                <label for="idContacto">Contacto:</label>
-                <input type="text" name="contacto" class="form-control" id="idContacto" value="{{contacto}}">
-            </div>
-            <div class="form-group">
-                <label for="irRamo">Ramo que vende:</label>
-                <input type="text" name="ramo" class="form-control" id="idRamo" value="{{ramo}}">
-            </div>
-                <input type="submit" name="Cargar" value="Modificar" class="btn btn-info" id="botonModificar">
+
+        <div class="form-group">
+            <label for="idNombre">Nombre o Razon social:</label>
+            <input type="text" value="{{nombre}}" name="nombre" class="form-control" id="idNombre" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idCuit">CUIT:</label>
+            <input type="text" value="{{cuit}}" name="cuit" class="form-control" id="idCuit" onblur="borrarGuion()" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="idCorreo">Correo Electronico:</label>
+            <input type="mail" value="{{correo}}" name="correo" class="form-control" id="idCorreo" required >
+            <small id="emailHelp" class="form-text text-muted">Puede ingresar mas de una direccion separando con punto y coma.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="idTel">Telefonos:</label>
+            <input type="text" value="{{telefono}}" name="telefono" class="form-control" id="idTel" required >
+        </div>
+
+        <div class="form-group">
+            <label for="idContacto">Persona de contacto:</label>
+            <input type="text" value="{{contacto}}" name="contacto"  class="form-control" id="idContacto" >
+        </div>
+
+        <div class="form-group">
+            <label for="irRamo">Ramos que vende:</label>
+            <input type="text" value="{{ramo}}" name="ramo" class="form-control" id="idRamo" >
+            <small id="emailHelp" class="form-text text-muted">Separar los distintos ramos con coma.</small>
+        </div>
+            <input type="submit" name="Cargar" value="Modificar empresa" class="btn-block btn btn-dark" id="botonModificar">
+
         </form>
     </div>
 
@@ -35,7 +48,7 @@
     <a class="navbar-brand">Busque la empresa que desea modificar por nombre</a>
 
     <form class="form-inline ui-widget" action="/modificar" method="POST">
-        <input class="form-control mr-sm-2" type="search" name="empresa" aria-label="Search" id="buscadorModif" autocomplete="off" required    >
+        <input class="form-control mr-sm-2" type="search" name="empresa" aria-label="Search" id="buscadorModif" autocomplete="off" required>
         <button class="btn btn-primary" type="submit">Buscar</button>
     </form>
     </nav>
